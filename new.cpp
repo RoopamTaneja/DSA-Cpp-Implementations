@@ -1,4 +1,4 @@
-// rough code file
+// rough c++ code file
 
 #include <bits/stdc++.h>
 using namespace std;
