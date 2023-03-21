@@ -46,7 +46,7 @@ void printArr(int arr[], int size)
 }
 
 // for vectors:
-void asc_vector(vi vec)
+void asc_vector(vi &vec) // pass by ref...don't forget
 {
     for (int i = 1; i < vec.size(); i++) // for round 1 to (size-1)
     {
@@ -57,7 +57,7 @@ void asc_vector(vi vec)
         }
     }
 }
-void desc_vector(vi vec)
+void desc_vector(vi &vec) // pass by ref...don't forget
 {
     for (int i = 1; i < vec.size(); i++)
     {
@@ -80,7 +80,6 @@ void print_vec(vi vec)
 int main()
 {
     int size = 0, entry = 0;
-    int i, j;
     cout << "Enter size of array : ";
     cin >> size;
     vi v;
