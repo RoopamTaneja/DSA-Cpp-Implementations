@@ -16,7 +16,6 @@ void print_vec(vi vec)
 int main()
 {
     int size = 0, entry = 0, key = 0;
-    int i, j;
     cout << "Enter size of array : ";
     cin >> size;
     vi v;
@@ -29,34 +28,20 @@ int main()
     cout << "\nOriginal array : \n";
     print_vec(v); // Original Array
 
-    // Insertion sort algo (0-based indexing)
-    for (j = 1; j < v.size(); j++)
+    int index = -1;
+    cout << "Enter key : ";
+    cin >> key;
+    for (int i = 0; i < size; i++)
     {
-        key = v[j];
-        i = j - 1;
-        while (i >= 0 && v[i] > key)
+        if (v[i] == key)
         {
-            v[i + 1] = v[i];
-            i--;
+            index = i;
+            break;
         }
-        v[i + 1] = key;
     }
-
-    // for nonincreasing order:
-
-    // for (j = 1; j < v.size(); j++)
-    // {
-    //     key = v[j];
-    //     i = j - 1;
-    //     while (i >= 0 && v[i] < key)
-    //     {
-    //         v[i + 1] = v[i];
-    //         i--;
-    //     }
-    //     v[i + 1] = key;
-    // }
-
-    cout << "Sorted array : \n";
-    print_vec(v);
+    if (index != -1)
+        cout << "Index of " << key << " is : " << index << "\n";
+    else
+        cout << "NIL\n";
     return 0;
 }
