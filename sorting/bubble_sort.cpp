@@ -79,7 +79,7 @@ void print_vec(vi vec)
 
 int main()
 {
-    int size = 0, entry = 0;
+    int size, entry;
     cout << "Enter size of array : ";
     cin >> size;
     vi v;

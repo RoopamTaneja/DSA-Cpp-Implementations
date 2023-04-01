@@ -15,7 +15,7 @@ void print_vec(vi vec)
 }
 int main()
 {
-    int size = 0, entry = 0, key = 0;
+    int size, entry, key;
     cout << "Enter size of array : ";
     cin >> size;
     vi v;
