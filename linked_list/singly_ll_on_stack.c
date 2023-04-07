@@ -39,8 +39,3 @@ int main()
 
     return 0;
 }
-
-/* It creates a simple linked list with three nodes and prints their data using the printList function. The nodes are allocated on the stack 
-and linked together using the next member of the struct Node type. The printList function takes a pointer to the head of the list as an argument 
-and traverses the list, printing the data in each node until it reaches the end of the list.
-*/

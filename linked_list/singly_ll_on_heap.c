@@ -40,9 +40,3 @@ int main()
     printList(head);
     return 0;
 }
-
-/*
-This code creates a simple linked list with three nodes and prints
-their data using the printList function. The nodes are allocated on
-the heap using malloc and linked together
-using the next member of the struct Node type.*/
