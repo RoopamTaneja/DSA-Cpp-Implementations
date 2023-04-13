@@ -30,6 +30,41 @@ void create_node()
     }
 }
 
+void insert_node(node *curr)
+{
+    node *tmp = new node;
+    tmp->next = curr->next;
+    curr->next = tmp; // inserts node named tmp after node named curr
+}
+
+node *search_node(int k)
+{
+    node *x = head;
+    while (x != NULL && x->next != NULL)
+    {
+        if (x->next->data < k)
+            return x;
+        x = x->next;
+    }
+    return x;
+}
+
+void delete_node(node *curr)
+{
+    if (curr == head)
+    { // to delete the head
+        head = curr->next;
+        free(curr);
+    }
+    else
+    {//to delete node next to head
+        node *tmp;
+        tmp = curr->next;
+        curr->next = tmp->next;
+        free(tmp);
+    }
+}
+
 void display()
 {
     node *temp;

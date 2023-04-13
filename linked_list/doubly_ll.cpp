@@ -13,6 +13,7 @@ struct node
 };
 node *head = NULL;
 node *temp = NULL;
+
 void create_node()
 {
     node *new_node = new node;
@@ -32,6 +33,40 @@ void create_node()
     }
 }
 
+node *search_node(int key)
+{ // finds first element with key in list
+    node *x = head;
+    while (x != NULL && x->data != key)
+        x = x->next;
+    return x;
+}
+
+void insert_begin(node *curr)
+{
+    curr->next = head;
+    if (head != NULL)
+        head->prev = curr;
+    head = curr;
+    curr->prev = NULL;
+}
+void insert_node(node *curr)
+{
+    node *tmp = new node;
+    curr->next->prev = tmp;
+    tmp->next = curr->next;
+    curr->next = tmp; // inserts node named tmp after node named curr
+    tmp->prev = curr;
+}
+
+void delete_node(node *to_del)
+{ // deletes pointer to_del
+    if (to_del->prev != NULL)
+        to_del->prev->next = to_del->next;
+    else
+        head = to_del->next;
+    if (to_del->next != NULL)
+        to_del->next->prev = to_del->prev;
+}
 void display()
 {
     node *temp;
@@ -50,6 +85,10 @@ int main()
     for (int i = 0; i < value; i++)
         create_node();
     cout << "\nComplete linked list : \n";
+    display();
+    cout << "\nEnter value to be deleted : ";
+    cin >> value;
+    delete_node(search_node(value));
     display();
     return 0;
 }
