@@ -1,5 +1,6 @@
-// A C program to demonstrate linked list based
-// implementation of queue
+
+// difference from what's in nb : here rear points to last element unlike nb
+
 #include <stdio.h>
 #include <stdlib.h>
 
