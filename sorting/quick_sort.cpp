@@ -54,6 +54,24 @@ int partition3(vector<int> &v, int p, int r) // alternative way of partitioning
     return j;
 }
 
+int partition4(vector<int> &v, int p, int r) // alternative way of partitioning
+{
+    int x = v[r]; // pivot
+    int i = p;
+    int j = r - 1;
+    while (i < j)
+    {
+        while (v[i] <= x)
+            i++;
+        while (v[j] > x)
+            j--;
+        if (i < j)
+            swap(v[i], v[j]);
+    }
+    swap(v[r], v[i]);
+    return i;
+}
+
 void quicksort(vector<int> &v, int p, int r)
 {
     if (p < r) // must have atleast two elements
@@ -61,6 +79,7 @@ void quicksort(vector<int> &v, int p, int r)
         int q = partition(v, p, r);
         // int q = partition2(v, p, r);
         // int q = partition3(v, p, r);
+        // int q = partition4(v, p, r);
         quicksort(v, p, q - 1);
         quicksort(v, q + 1, r);
     }
