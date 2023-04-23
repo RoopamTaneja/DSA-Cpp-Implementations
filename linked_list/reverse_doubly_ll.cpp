@@ -33,39 +33,20 @@ void create_node()
     }
 }
 
-node *search_node(int key)
-{ // finds first element with key in list
-    node *x = head;
-    while (x != NULL && x->data != key)
-        x = x->next;
-    return x;
-}
-
-void insert_begin(node *curr)
+void reverseList()
 {
-    curr->next = head;
-    if (head != NULL)
-        head->prev = curr;
-    head = curr;
-    curr->prev = NULL;
-}
-void insert_node(node *curr)
-{
-    node *tmp = new node;
-    curr->next->prev = tmp;
-    tmp->next = curr->next;
-    curr->next = tmp; // inserts node named tmp after node named curr
-    tmp->prev = curr;
-}
-
-void delete_node(node *to_del)
-{ // deletes pointer to_del
-    if (to_del->prev != NULL)
-        to_del->prev->next = to_del->next;
-    else
-        head = to_del->next;
-    if (to_del->next != NULL)
-        to_del->next->prev = to_del->prev;
+    node *t = head;
+    while (t->next != NULL)
+    { // swap t->next and t->prev
+        node *s = t->next;
+        t->next = t->prev;
+        t->prev = s;
+        t = t->prev; // ab prev se hi aage ja sakte hain
+    }
+    head = t;          // tail is new head
+    node *s = t->next; // swap for tail
+    t->next = t->prev;
+    t->prev = s;
 }
 void display()
 {
@@ -86,9 +67,8 @@ int main()
         create_node();
     cout << "\nComplete linked list : \n";
     display();
-    cout << "\nEnter value to be deleted : ";
-    cin >> value;
-    delete_node(search_node(value));
+    reverseList();
+    cout << "\n";
     display();
     return 0;
 }
