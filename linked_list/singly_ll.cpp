@@ -57,7 +57,7 @@ void delete_node(node *curr)
         free(curr);
     }
     else
-    {//to delete node next to head
+    {//to delete node next to curr
         node *tmp;
         tmp = curr->next;
         curr->next = tmp->next;

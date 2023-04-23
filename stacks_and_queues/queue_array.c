@@ -1,5 +1,7 @@
+// check overflow underflow again
+
 #include <stdio.h>
-#define SIZE 100
+#define SIZE 3
 int inp_arr[SIZE];
 int tail = 0;
 int head = 0;
@@ -23,7 +25,7 @@ void enqueue()
 
 void dequeue()
 {
-    if (head == tail)
+    if (head == tail + 1)
     {
         printf("Underflow \n");
     }
@@ -40,7 +42,7 @@ void dequeue()
 void show()
 {
 
-    if (head == tail)
+    if (head == tail + 1)
         printf("Empty Queue \n");
     else
     {

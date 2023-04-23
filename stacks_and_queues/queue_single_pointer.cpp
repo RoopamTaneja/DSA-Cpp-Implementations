@@ -86,6 +86,7 @@ int main()
     cout << "\n";
     cout << q.dequeue() << "\n";
     q.display();
+    return 0;
 }
 
 // This code creates a Queue class that has a Node structure to represent each element in
