@@ -57,7 +57,7 @@ void delete_node(node *curr)
         free(curr);
     }
     else
-    {//to delete node next to curr
+    { // to delete node next to curr
         node *tmp;
         tmp = curr->next;
         curr->next = tmp->next;
@@ -67,12 +67,12 @@ void delete_node(node *curr)
 
 void display()
 {
-    node *temp;
-    temp = head;
-    while (temp != NULL)
+    node *tmp;
+    tmp = head;
+    while (tmp != NULL)
     {
-        cout << temp->data << " ";
-        temp = temp->next;
+        cout << tmp->data << " ";
+        tmp = tmp->next;
     }
 }
 int main()
