@@ -78,13 +78,13 @@ void Queue::display()
     } while (temp != rear->next);
 }
 
-void f(Queue &q)
+void rev_q_recursive(Queue &q)
 {
     int i;
     if (!q.isEmpty())
     {
         i = q.dequeue();
-        f(q);
+        rev_q_recursive(q);
         q.enqueue(i);
     }
 }
@@ -97,7 +97,7 @@ int main()
     q.enqueue(30);
     q.display();
     cout << "\n";
-    f(q);
+    rev_q_recursive(q);
     q.display();
     return 0;
 }

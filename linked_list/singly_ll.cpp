@@ -37,18 +37,6 @@ void insert_node(node *curr)
     curr->next = tmp; // inserts node named tmp after node named curr
 }
 
-node *search_node(int k)
-{
-    node *x = head;
-    while (x != NULL && x->next != NULL)
-    {
-        if (x->next->data < k)
-            return x;
-        x = x->next;
-    }
-    return x;
-}
-
 void delete_node(node *curr)
 {
     if (curr == head)
