@@ -18,8 +18,9 @@ void inOrderRecursive(node *curr, vector<int> &inOrder)
     inOrderRecursive(curr->right, inOrder);
 }
 
-vector<int> inOrderIter(node *curr)
+vector<int> inOrderIter(node *root)
 {
+    node *curr = root;
     vector<int> inOrder;
     stack<node *> s;
     while (true)
