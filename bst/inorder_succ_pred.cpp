@@ -26,7 +26,7 @@ int findSucc(Node *root, int input)
     int succ = -1;
     while (x != NULL)
     {
-        if (x->data < input)
+        if (x->data <= input)
             x = x->right;
         else if (x->data > input)
         {
@@ -50,7 +50,7 @@ int findPred(Node *root, int input)
             pred = x->data; // it is a possible predecessor
             x = x->right;
         }
-        else if (x->data > input)
+        else if (x->data >= input)
         {
             x = x->left;
         }
@@ -59,6 +59,10 @@ int findPred(Node *root, int input)
 }
 
 // Approach 2:
+// It's in nb : uses parent pointer
+
+// Approach 3:
+//  It's in nb : uses inorder traversal
 
 int main()
 {

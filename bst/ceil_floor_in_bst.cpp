@@ -58,7 +58,7 @@ int findFloor(Node *root, int input)
     return floor;
 }
 
-// T.C of both : O(h) ---> O(n) in worst case
+// T.C of both : O(h)
 
 int main()
 {
