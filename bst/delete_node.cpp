@@ -17,40 +17,32 @@ Node *newNode(int x)
     return temp;
 }
 
-Node *searchNode(Node *root, int val)
-{
-    Node *x = root;
-    while (x != NULL && x->data != val)
-    {
-        if (x->data < val)
-            x = x->right;
-        else
-            x = x->left;
-    }
-    return x;
-}
-
 Node *deleteNode(Node *root, int key)
 {
-    if (root)
-        if (key < root->data)
-            root->left = deleteNode(root->left, key); // We recursively call the function until we find the target node
-        else if (key > root->data)
-            root->right = deleteNode(root->right, key);
+    Node *curr = root;
+    if (curr)
+        if (key < curr->data)
+            curr->left = deleteNode(curr->left, key); // We recursively call the function until we find the target node
+        else if (key > curr->data)
+            curr->right = deleteNode(curr->right, key);
         else
         {
-            if (!root->left && !root->right)
+            if (!curr->left && !curr->right)
                 return NULL; // No child condition
-            if (!root->left || !root->right)
-                return root->left ? root->left : root->right; // One child contion -> replace the node with it's child
-                                                              // Two child condition
-            Node *temp = root->left;                          // (or) Node *temp = root->right;
-            while (temp->right != NULL)
-                temp = temp->right;                          //  while(temp->left != NULL) temp = temp->left;
-            root->data = temp->data;                         //  root->data = temp->data;
-            root->left = deleteNode(root->left, temp->data); //  root->right = deleteNode(root->right, temp);
+            if (!curr->left || !curr->right)
+                return curr->left ? curr->left : curr->right;
+            // One child condition -> replace the node with it's child
+
+            // Two child condition:
+            // we essentially need to replace the node to_be_del with its inorder pred or succ
+            // so u can either find leftmost of right subtree or right most of left subtree
+            Node *temp = curr->right;
+            while (temp->left != NULL)
+                temp = temp->left;
+            curr->data = temp->data;
+            curr->right = deleteNode(curr->right, temp->data);
         }
-    return root;
+    return curr;
 }
 
 int main()

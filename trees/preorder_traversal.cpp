@@ -18,7 +18,7 @@ void preOrderRecursive(node *curr, vector<int> &preOrder)
     preOrderRecursive(curr->right, preOrder);
 }
 
-vector<int> preOrderTrav(node *curr)
+vector<int> preOrderIter(node *curr)
 {
     vector<int> preOrder;
     if (curr == NULL)
