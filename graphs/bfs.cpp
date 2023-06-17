@@ -1,16 +1,18 @@
-#include <bits/stdc++.h>
+// Code for BFS traversal as well as
+// no. of connected components in undirected using BFS
+
+#include <iostream>
+#include <vector>
+#include <queue>
 using namespace std;
 
-// starting vertex different and multi source functionality pending
-
-vector<int> bfs(int V, vector<int> adj[])
+void bfs(vector<int> &vis, vector<int> adj[], int S, vector<int> &result)
 {
-    int vis[V] = {0};
-    vis[0] = 1;
+    vis[S] = 1;
     queue<int> q;
     // push the initial starting node
-    q.push(0);
-    vector<int> result;
+    q.push(S);
+
     // iterate till the queue is empty
     while (!q.empty())
     {
@@ -30,6 +32,22 @@ vector<int> bfs(int V, vector<int> adj[])
             }
         }
     }
+}
+
+vector<int> bfsOfGraph(int V, vector<int> adj[])
+{
+    int count = 0;
+    vector<int> vis(V, 0);
+    vector<int> result;
+    for (int i = 0; i < V; i++)
+    {
+        if (vis[i] == 0)
+        {
+            bfs(vis, adj, i, result);
+            count++; // stores number of connected components
+        }
+    }
+    cout << "Number of connected components: " << count << "\n";
     return result;
 }
 
@@ -50,16 +68,12 @@ void printAns(vector<int> &ans)
 int main()
 {
     vector<int> adj[6];
-    // it is an array of 6 vectors of ints. Each element of the array adj is a vector of
-    // ints. This is commonly used to represent an adjacency list of a graph where
-    // each element of the array represents a vertex and the vector at that index
-    // contains the vertices adjacent to it.
     addEdge(adj, 0, 1);
     addEdge(adj, 1, 2);
     addEdge(adj, 1, 3);
     addEdge(adj, 0, 4);
 
-    vector<int> ans = bfs(5, adj);
+    vector<int> ans = bfsOfGraph(5, adj);
     printAns(ans);
 
     return 0;

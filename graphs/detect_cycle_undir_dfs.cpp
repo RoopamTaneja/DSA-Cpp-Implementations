@@ -1,51 +1,45 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class Solution
+bool dfs(int node, int parent, int vis[], vector<int> adj[])
 {
-private:
-    bool dfs(int node, int parent, int vis[], vector<int> adj[])
+    vis[node] = 1;
+    for (auto adjacentNode : adj[node])
     {
-        vis[node] = 1;
-        for (auto adjacentNode : adj[node])
+        // unvisited adjacent node
+        if (!vis[adjacentNode])
         {
-            // unvisited adjacent node
-            if (!vis[adjacentNode])
-            {
-                if (dfs(adjacentNode, node, vis, adj) == true)
-                    return true;
-            }
-            // visited node but not a parent node
-            else if (adjacentNode != parent)
+            if (dfs(adjacentNode, node, vis, adj) == true)
                 return true;
         }
-        return false;
+        // visited node but not a parent node
+        else if (adjacentNode != parent)
+            return true;
     }
+    return false;
+}
 
-public:
-    bool isCycle(int V, vector<int> adj[])
+bool isCycle(int V, vector<int> adj[])
+{
+    int vis[V] = {0};
+    // for graph with connected components
+    for (int i = 0; i < V; i++)
     {
-        int vis[V] = {0};
-        // for graph with connected components
-        for (int i = 0; i < V; i++)
+        if (!vis[i])
         {
-            if (!vis[i])
-            {
-                if (dfs(i, -1, vis, adj) == true)
-                    return true;
-            }
+            if (dfs(i, -1, vis, adj) == true)
+                return true;
         }
-        return false;
     }
-};
+    return false;
+}
 
 int main()
 {
 
     // V = 4, E = 2
     vector<int> adj[4] = {{}, {2}, {1, 3}, {2}};
-    Solution obj;
-    bool ans = obj.isCycle(4, adj);
+    bool ans = isCycle(4, adj);
     if (ans)
         cout << "1\n";
     else

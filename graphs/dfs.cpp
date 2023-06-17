@@ -1,17 +1,20 @@
+// Code for DFS traversal as well as
+// no. of connected components in undirected using DFS
+
 #include <bits/stdc++.h>
 using namespace std;
 
-void dfs(int node, vector<int> adj[], int vis[], vector<int> &ls)
+void dfs(int node, vector<int> adj[], int vis[], vector<int> &result)
 {
     vis[node] = 1;
-    ls.push_back(node);
+    result.push_back(node);
     // traverse all its neighbours
     for (auto it : adj[node])
     {
         // if the neighbour is not visited
         if (!vis[it])
         {
-            dfs(it, adj, vis, ls);
+            dfs(it, adj, vis, result);
         }
     }
 }
@@ -20,14 +23,21 @@ void dfs(int node, vector<int> adj[], int vis[], vector<int> &ls)
 vector<int> dfsOfGraph(int V, vector<int> adj[])
 {
     int vis[V] = {0};
-    int start = 0;
-    // create a list to store dfs
-    vector<int> ls;
-    // call dfs for starting node
-    dfs(start, adj, vis, ls);
-    return ls;
-}
+    int count = 0;
 
+    // create a list to store dfs
+    vector<int> result;
+    for (int i = 0; i < V; i++)
+    {
+        if (vis[i] == 0)
+        {
+            dfs(i, adj, vis, result);
+            count++;
+        }
+    }
+    cout << "Number of connected components: " << count << "\n";
+    return result;
+}
 void addEdge(vector<int> adj[], int u, int v)
 {
     adj[u].push_back(v);
