@@ -5,6 +5,7 @@ typedef long double ld;
 typedef vector<int> vi;
 #define PI 3.14159265359
 
+// Bit manipulation :
 vector<string> power_set(string input)
 {
     vector<string> result;
@@ -22,6 +23,7 @@ vector<string> power_set(string input)
     return result;
 }
 
+// Recursive :
 void printVec(vi v)
 {
     for (int i = 0; i < v.size(); i++)
