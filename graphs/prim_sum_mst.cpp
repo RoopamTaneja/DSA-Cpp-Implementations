@@ -59,3 +59,59 @@ int main()
 
     return 0;
 }
+
+// ALITER:
+//  #include <bits/stdc++.h>
+//  using namespace std;
+
+// // Function to find sum of weights of edges of the Minimum Spanning Tree.
+// int sumMST(int v, vector<pair<int,int>> adj[])
+// {
+//     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+//     vector<int> vis(v, 0);
+
+//     // {wt, node}
+//     pq.push({0, 0});
+//     int sumEdges = 0;
+//     while (!pq.empty())
+//     {
+//         auto it = pq.top();
+//         pq.pop();
+//         int node = it.second;
+//         int wt = it.first;
+
+//         if (vis[node] == 1)
+//             continue;
+
+//         vis[node] = 1;
+//         sumEdges += wt;
+//         for (auto it : adj[node])
+//         {
+//             int adjNode = it.first;
+//             int edWeight = it.second;
+//             if (!vis[adjNode])
+//             {
+//                 pq.push({edWeight, adjNode});
+//             }
+//         }
+//     }
+//     return sumEdges;
+// }
+
+// int main()
+// {
+
+//     int v =5;
+//     vector<vector<int>> edges = {{0, 1, 1}, {1, 2, 3}, {2, 3, 2}, {3, 4, 5}, {0, 4, 6}, {4,1,7}};
+//     vector<pair<int,int>> adj[v];
+//     for (auto it : edges)
+//     {//making adj list storing weights from edges
+//         adj[it[0]].push_back(make_pair(it[1],it[2]));
+//         adj[it[1]].push_back(make_pair(it[0],it[2]));
+//     }
+
+//     int sumEdges = sumMST(v, adj);
+//     cout << "The sum of all the edge weights of MST of given graph : " << sumEdges <<"\n";
+
+//     return 0;
+// }

@@ -35,16 +35,19 @@ void create_node()
 
 void reverseList()
 {
+    if (head == NULL)
+        return;
     node *t = head;
+    node *s = NULL;
     while (t->next != NULL)
     { // swap t->next and t->prev
-        node *s = t->next;
+        s = t->next;
         t->next = t->prev;
         t->prev = s;
         t = t->prev; // ab prev se hi aage ja sakte hain
     }
-    head = t;          // tail is new head
-    node *s = t->next; // swap for tail
+    head = t;    // tail is new head
+    s = t->next; // swap for tail
     t->next = t->prev;
     t->prev = s;
 }

@@ -1,55 +1,53 @@
 #include <bits/stdc++.h>
 using namespace std;
-typedef long long ll;
-typedef long double ld;
-typedef vector<int> vi;
-#define PI 3.14159265359
 
-struct node
+class node
 {
+public:
     int data;
     node *next;
+    node(int val)
+    {
+        data = val;
+        next = NULL;
+    }
 };
-node *head = NULL;
-node *temp = NULL;
-void create_node()
+
+void create_node(node *&head, int val)
 {
-    node *new_node = new node;
-    new_node->next = NULL;
-    cout << "Enter data of node : ";
-    cin >> new_node->data;
+    node *newNode = new node(val);
     if (head == NULL)
-    { // if list is empty, this node is first node, so stored in head
-        head = new_node;
-        temp = new_node;
+    {
+        head = newNode;
+        return;
     }
-    else
-    { // if list is not empty, prev node(temp) ka next = new_node, temp is updated to this node
-        temp->next = new_node;
-        temp = new_node;
-    }
+    node *temp = head;
+    while (temp->next != NULL)
+        temp = temp->next;
+    temp->next = newNode; // insert after tail
+    return;
 }
 
-void insert_node(node *curr)
+void insert_node(node *&curr, int val)
 {
-    node *tmp = new node;
+    node *tmp = new node(val);
     tmp->next = curr->next;
     curr->next = tmp; // inserts node named tmp after node named curr
 }
 
-void insert_at_beginning()
+void insert_at_beginning(node *&head, int val)
 {
-    node *tmp = new node;
+    node *tmp = new node(val);
     tmp->next = head;
     head = tmp;
 }
 
-void delete_node(node *curr)
+void delete_node(node *&head, node *curr)
 {
     if (curr == head)
     { // to delete the head
         head = curr->next;
-        free(curr);
+        delete curr;
     }
     else
     { // to delete node next to curr
@@ -57,11 +55,11 @@ void delete_node(node *curr)
         node *tmp;
         tmp = curr->next;
         curr->next = tmp->next;
-        free(tmp);
+        delete tmp;
     }
 }
 
-int get_length()
+int get_length(node *&head)
 {
     int count = 0;
     node *curr = head; // Initialize current
@@ -73,7 +71,7 @@ int get_length()
     return count;
 }
 
-void display()
+void display(node *&head)
 {
     node *tmp;
     tmp = head;
@@ -84,7 +82,7 @@ void display()
     }
 }
 
-node *search_node(int key)
+node *search_node(node *&head, int key)
 { // finds first element with key in list
     node *x = head;
     while (x != NULL && x->data != key)
@@ -94,12 +92,11 @@ node *search_node(int key)
 
 int main()
 {
-    cout << "Enter no of node you wish to enter : ";
-    int value;
-    cin >> value;
-    for (int i = 0; i < value; i++)
-        create_node();
-    cout << "\nComplete linked list : \n";
-    display();
+    node *head = NULL;
+    create_node(head, 1);
+    create_node(head, 2);
+    create_node(head, 3);
+    create_node(head, 4);
+    display(head);
     return 0;
 }

@@ -12,7 +12,7 @@ struct node
     node *prev;
 };
 node *head = NULL;
-node *temp = NULL;
+node *temp = NULL; // temp points to last node of dll
 
 void create_node()
 {
@@ -66,6 +66,7 @@ void delete_node(node *to_del)
         head = to_del->next;
     if (to_del->next != NULL)
         to_del->next->prev = to_del->prev;
+    free(to_del);
 }
 void display()
 {
