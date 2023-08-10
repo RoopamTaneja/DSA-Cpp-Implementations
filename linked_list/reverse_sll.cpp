@@ -46,14 +46,13 @@ node *reverse_list_iter(node *&head)
 
 node *reverse_list_recur(node *&head)
 {
-
     if (head == NULL || head->next == NULL)
         return head;
 
-    node *nnode = reverse_list_recur(head->next);
+    node *newHead = reverse_list_recur(head->next);
     head->next->next = head;
     head->next = NULL;
-    return nnode;
+    return newHead;
 }
 
 void display(node *&head)

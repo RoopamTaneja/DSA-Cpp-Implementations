@@ -1,3 +1,6 @@
+// essentially uses a circular ll to
+// implement circular queue with single pointer
+
 #include <iostream>
 using namespace std;
 
@@ -45,7 +48,7 @@ int Queue::dequeue()
         return -1;
     }
     int x;
-    if (rear->next == rear)
+    if (rear->next == rear) // only 1 element in queue
     {
         x = rear->data;
         delete rear;

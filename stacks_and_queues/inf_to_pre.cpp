@@ -1,4 +1,4 @@
-// C++ code to convert infix expression to postfix
+// C++ code to convert infix expression to prefix
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -17,12 +17,12 @@ int prec(char c)
 }
 
 // The main function to convert infix expression
-// to postfix expression
-void infixToPostfix(string s)
+// to prefix expression
+void infixToPrefix(string s)
 {
     stack<char> st;
     string result;
-
+    reverse(s.begin(), s.end());
     for (int i = 0; i < s.length(); i++)
     {
         char c = s[i];
@@ -53,7 +53,7 @@ void infixToPostfix(string s)
         // If an operator is scanned
         else
         {
-            while (!st.empty() && prec(s[i]) <= prec(st.top()))
+            while (!st.empty() && prec(s[i]) < prec(st.top()))
             {
                 result += st.top();
                 st.pop();
@@ -68,7 +68,7 @@ void infixToPostfix(string s)
         result += st.top();
         st.pop();
     }
-
+    reverse(result.begin(), result.end());
     cout << result << "\n";
 }
 
@@ -80,7 +80,7 @@ int main()
     cin >> exp;
     cout << "\n";
     // Function call
-    infixToPostfix(exp);
+    infixToPrefix(exp);
 
     return 0;
 }
