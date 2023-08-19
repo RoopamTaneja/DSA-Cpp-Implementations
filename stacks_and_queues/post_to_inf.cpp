@@ -27,6 +27,8 @@ void postfixToInfix(string s)
     cout << st.top() << "\n";
 }
 
+// T.C : O(n), aux S.C : O(n)
+
 int main()
 {
     string exp;

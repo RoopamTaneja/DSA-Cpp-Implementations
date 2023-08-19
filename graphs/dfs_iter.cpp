@@ -1,31 +1,19 @@
-// starting vertex different and multi source functionality pending
+// Code for iterative DFS traversal as well as
+// no. of connected components in undirected using DFS
 
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<int> dfsIter(int V, vector<int> adj[])
+vector<int> dfsIter(int S, vector<int> adj[], int vis[], vector<int> &result)
 {
-    int vis[V] = {0};
-    vis[0] = 1;
+    vis[S] = 1;
     stack<int> st;
-    // push the initial starting node
-    st.push(0);
-    vector<int> result;
-
+    st.push(S);
     while (!st.empty())
     {
         int node = st.top();
         st.pop();
         result.push_back(node);
-
-        // for (auto it : adj[node])
-        // {
-        //     if (!vis[it])
-        //     {
-        //         vis[it] = 1;
-        //         st.push(it);
-        //     }
-        // }
 
         for (int i = adj[node].size() - 1; i >= 0; --i)
         {
@@ -40,6 +28,23 @@ vector<int> dfsIter(int V, vector<int> adj[])
     return result;
 }
 
+vector<int> dfsOfGraph(int V, vector<int> adj[])
+{
+    int vis[V] = {0};
+    int count = 0;
+
+    vector<int> result;
+    for (int i = 0; i < V; i++)
+    {
+        if (vis[i] == 0)
+        {
+            dfsIter(i, adj, vis, result);
+            count++;
+        }
+    }
+    cout << "Number of connected components: " << count << "\n";
+    return result;
+}
 void addEdge(vector<int> adj[], int u, int v)
 {
     adj[u].push_back(v);
@@ -56,14 +61,15 @@ void printAns(vector<int> &ans)
 
 int main()
 {
-    vector<int> adj[5];
+    vector<int> adj[7];
 
     addEdge(adj, 0, 2);
     addEdge(adj, 2, 4);
     addEdge(adj, 0, 1);
     addEdge(adj, 0, 3);
+    addEdge(adj, 5, 6);
 
-    vector<int> ans = dfsIter(5, adj);
+    vector<int> ans = dfsOfGraph(7, adj);
     printAns(ans);
 
     return 0;

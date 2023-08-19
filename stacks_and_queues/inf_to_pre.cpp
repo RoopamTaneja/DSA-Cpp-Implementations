@@ -72,6 +72,8 @@ void infixToPrefix(string s)
     cout << result << "\n";
 }
 
+// T.C : O(n), aux S.C : O(n)
+
 // Driver code
 int main()
 {

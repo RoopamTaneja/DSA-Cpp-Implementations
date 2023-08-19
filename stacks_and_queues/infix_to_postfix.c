@@ -97,6 +97,8 @@ char *infixToPostfix(char *infix)
     return postfix;
 }
 
+// T.C : O(n), aux S.C : O(n)
+
 // Driver code
 int main()
 {
