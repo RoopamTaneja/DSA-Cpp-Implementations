@@ -14,7 +14,6 @@ bool bfs(vector<int> &vis, vector<int> adj[], int S)
         int node = q.front();
         q.pop();
 
-        // traverse for all its neighbours
         for (auto it : adj[node])
         {
             if (vis[it] == vis[node])
@@ -31,7 +30,6 @@ bool bfs(vector<int> &vis, vector<int> adj[], int S)
 
 bool isBipartite(int V, vector<int> adj[])
 {
-    int count = 0;
     vector<int> vis(V, -1);
     for (int i = 0; i < V; i++)
     {
@@ -44,24 +42,8 @@ bool isBipartite(int V, vector<int> adj[])
     return true;
 }
 
-void addEdge(vector<int> adj[], int u, int v)
-{
-    adj[u].push_back(v);
-    adj[v].push_back(u);
-}
-
 int main()
 {
-    vector<int> adj[6];
-    addEdge(adj, 0, 1);
-    addEdge(adj, 1, 2);
-    addEdge(adj, 1, 3);
-    addEdge(adj, 0, 4);
-
-    if (isBipartite(5, adj))
-        cout << "TRUE\n";
-    else
-        cout << "FALSE\n";
 
     return 0;
 }

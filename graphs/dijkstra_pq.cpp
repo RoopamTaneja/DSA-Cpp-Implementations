@@ -1,11 +1,12 @@
 #include <bits/stdc++.h>
 using namespace std;
+typedef pair<int, int> pii;
+
 // prints shortest path also
 vector<int> dijkstra(int V, vector<vector<int>> adj[], int S, int D, vector<int> &path)
 {
 
-    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
-
+    priority_queue<pii, vector<pii>, greater<pii>> pq;
     vector<int> distTo(V + 1, INT_MAX);
 
     // for shortest path

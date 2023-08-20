@@ -1,5 +1,3 @@
-// PENDING
-
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -9,7 +7,7 @@ vector<int> dijkstra(int V, vector<vector<int>> adj[], int S)
     set<pair<int, int>> st;
 
     // Initialising dist list with a large number
-    vector<int> dist(V, 1e9);
+    vector<int> dist(V + 1, 1e9);
 
     st.insert({0, S});
 
@@ -53,21 +51,30 @@ vector<int> dijkstra(int V, vector<vector<int>> adj[], int S)
 
 int main()
 {
-    int V = 3, E = 3, S = 2;
-    vector<vector<int>> adj[V];
-    vector<vector<int>> edges;
-    vector<int> v1{1, 1}, v2{2, 6}, v3{2, 3}, v4{0, 1}, v5{1, 3}, v6{0, 6};
-    int i = 0;
-    adj[0].push_back(v1);
-    adj[0].push_back(v2);
-    adj[1].push_back(v3);
-    adj[1].push_back(v4);
-    adj[2].push_back(v5);
-    adj[2].push_back(v6);
+    int V = 5;
+    int S; // source and destination
+    S = 2;
+    vector<vector<int>> adj[V + 1]; // adjacency list
+    vector<int> path;               // for storing path
+
+    adj[1].push_back({2, 3});
+    adj[1].push_back({3, 4});
+    adj[2].push_back({1, 3});
+    adj[2].push_back({3, 1});
+    adj[2].push_back({4, 6});
+    adj[3].push_back({2, 1});
+    adj[3].push_back({1, 4});
+    adj[3].push_back({4, 2});
+    adj[3].push_back({5, 5});
+    adj[4].push_back({3, 2});
+    adj[4].push_back({5, 1});
+    adj[4].push_back({2, 6});
+    adj[5].push_back({3, 5});
+    adj[5].push_back({4, 1});
 
     vector<int> res = dijkstra(V, adj, S);
 
-    for (int i = 0; i < V; i++)
+    for (int i = 1; i <= V; i++)
     {
         cout << res[i] << " ";
     }

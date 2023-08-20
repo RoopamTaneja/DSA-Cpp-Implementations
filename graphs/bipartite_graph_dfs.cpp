@@ -29,25 +29,9 @@ bool isBipartite(int V, vector<int> adj[])
 
     // can also make it multi source for connected components like u did in cycles
 }
-void addEdge(vector<int> adj[], int u, int v)
-{
-    adj[u].push_back(v);
-    adj[v].push_back(u);
-}
 
 int main()
 {
-    vector<int> adj[5];
-
-    addEdge(adj, 0, 2);
-    addEdge(adj, 2, 4);
-    addEdge(adj, 0, 1);
-    addEdge(adj, 0, 3);
-
-    if (isBipartite(5, adj))
-        cout << "TRUE\n";
-    else
-        cout << "FALSE\n";
 
     return 0;
 }
