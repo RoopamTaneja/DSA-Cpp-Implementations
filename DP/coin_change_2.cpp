@@ -90,21 +90,21 @@ ll coinChange(ll amt, vl &coins)
 // --------------------------------------------------------------------------
 
 // Coin change 2
-// ll sp[110][1000010];
-// ll ways(ll amt, ll ind, vl &coins)
-// {
-//     if (amt == 0)
-//         return 1;
-//     if (ind < 0)
-//         return 0;
-//     if (sp[ind][amt] != -1)
-//         return sp[ind][amt];
-//     ll ans = 0;
-//     for (ll c_amt = 0; c_amt <= amt; c_amt += coins[ind])
-//         ans += ways(amt - c_amt, ind - 1, coins);
+ll sp[110][1000010];
+ll ways(ll amt, ll ind, vl &coins)
+{
+    if (amt == 0)
+        return 1;
+    if (ind < 0)
+        return 0;
+    if (sp[ind][amt] != -1)
+        return sp[ind][amt];
+    ll ans = 0;
+    for (ll c_amt = 0; c_amt <= amt; c_amt += coins[ind])
+        ans += ways(amt - c_amt, ind - 1, coins);
 
-//     return sp[ind][amt] = ans;
-// }
+    return sp[ind][amt] = ans;
+}
 
 const int MOD = 1e9 + 7;
 ll tab_ways(ll amt, vl &coins)
@@ -159,11 +159,11 @@ ll sp_opt(ll amt, vl &coins)
     return arr[amt];
 }
 
-// ll coinChange2(ll amt, vl &coins)
-// {
-//     memset(sp, -1, sizeof(sp));
-//     return ways(amt, coins.size() - 1, coins);
-// }
+ll coinChange2(ll amt, vl &coins)
+{
+    memset(sp, -1, sizeof(sp));
+    return ways(amt, coins.size() - 1, coins);
+}
 
 int main()
 {
