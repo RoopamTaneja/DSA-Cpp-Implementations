@@ -45,8 +45,57 @@ bool canPartition(vl &nums)
 
 // --------------------------------------------------------------------------
 // Partition into two subsets such that abs(s1-s2) is min
+ll foo(ll i, ll k, ll sum, vl &v)
+{
+    if (i < 0)
+        return abs(2 * k - sum);
+    ll ans = foo(i - 1, k, sum, v);
+    if (k >= v[i])
+        return min(ans, foo(i - 1, k - v[i], sum, v));
+    return ans;
+}
+ll minimumDifference(vl &nums)
+{
+    ll sum = 0;
+    for (auto i : nums)
+        sum += i;
+    return foo(nums.size() - 1, sum, sum, nums);
+}
 
+// ALITER :
 
+ll minSubsetSumDifference(vl &arr, ll n)
+{
+    ll totSum = 0;
+    for (ll i = 0; i < n; i++)
+        totSum += arr[i];
+
+    vector<bool> prev(totSum + 1, false);
+    prev[0] = true; // 0 state
+    prev[arr[0]] = true;
+
+    for (int ind = 1; ind < n; ind++) // run N-1 states
+    {
+        vector<bool> cur(totSum + 1, false);
+        cur[0] = true;
+
+        for (ll target = 1; target <= totSum; target++)
+        {
+            bool notTaken = prev[target];
+            bool taken = false;
+            if (arr[ind] <= target)
+                taken = prev[target - arr[ind]];
+            cur[target] = notTaken || taken;
+        }
+        prev = cur;
+    }
+
+    ll mini = 1e9;
+    for (ll i = 0; i <= totSum; i++)
+        if (prev[i] == true)
+            mini = min(mini, abs(i - (totSum - i)));
+    return mini;
+}
 
 // --------------------------------------------------------------------------
 

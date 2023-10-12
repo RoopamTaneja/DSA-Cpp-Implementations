@@ -25,10 +25,10 @@ void f(int index, vi &temp, vi arr, int sum, int k)
         return;
     }
     temp.push_back(arr[index]);
-    sum += k;
+    sum += arr[index];
     f(index + 1, temp, arr, sum, k);
     temp.pop_back();
-    sum -= k;
+    sum -= arr[index];
     f(index + 1, temp, arr, sum, k);
 }
 
@@ -46,11 +46,11 @@ bool func(int index, vi &temp, vi arr, int sum, int k)
         return false;
     }
     temp.push_back(arr[index]);
-    sum += k;
+    sum += arr[index];
     if (func(index + 1, temp, arr, sum, k) == true)
         return true;
     temp.pop_back();
-    sum -= k;
+    sum -= arr[index];
     if (func(index + 1, temp, arr, sum, k) == true)
         return true;
     return false;
@@ -66,9 +66,9 @@ int foo(int index, vi arr, int sum, int k)
             return 1;
         return 0;
     }
-    sum += k;
+    sum += arr[index];
     int l = foo(index + 1, arr, sum, k);
-    sum -= k;
+    sum -= arr[index];
     int r = foo(index + 1, arr, sum, k);
     return l + r;
 }

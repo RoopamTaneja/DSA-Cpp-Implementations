@@ -1,0 +1,5 @@
+dp on grids (count paths , max sum, min sum)
+dp on strings (print lcs etc)
+atc F 
+usaco paths on grids
+cses money sums, edit distance, grid, array descr, incr subseq

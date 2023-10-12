@@ -30,6 +30,24 @@ ll unbdd_knapsack(vl &w, vl &v, ll W)
     return ukn[W];
 }
 
+ll lcs(string &s1, string &s2)
+{
+    ll n = s1.size(), m = s2.size();
+    vl prev(m + 1, 0), curr(m + 1, 0);
+    for (ll i = 1; i <= n; i++) // filling index i with data of (i-1)
+    {
+        for (ll j = 1; j <= m; j++)
+        {
+            if (s1[i - 1] == s2[j - 1])
+                curr[j] = prev[j - 1] + 1;
+            else
+                curr[j] = max(prev[j], curr[j - 1]);
+        }
+        prev = curr;
+    }
+    return prev[m];
+}
+
 int main()
 {
     return 0;
