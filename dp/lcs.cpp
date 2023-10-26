@@ -32,6 +32,7 @@ ll memo(ll i, ll j, string &s1, string &s2)
     return dp[i][j] = max(memo(i - 1, j, s1, s2), memo(i, j - 1, s1, s2));
 }
 
+// Tabulation
 ll tab(string &s1, string &s2)
 {
     ll n = s1.size(), m = s2.size();
@@ -53,6 +54,7 @@ ll tab(string &s1, string &s2)
     return dp[n][m];
 }
 
+// Space optimisation
 ll sp_opt(string &s1, string &s2)
 {
     ll n = s1.size(), m = s2.size();
@@ -71,10 +73,29 @@ ll sp_opt(string &s1, string &s2)
     return prev[m];
 }
 
+// Backtracking to print lcs
+string print_lcs(string &s1, string &s2)
+{
+    ll n = s1.size(), m = s2.size();
+    string lcs = "";
+    while (n && m)
+    {
+        if (s1[n - 1] == s2[m - 1])
+        {
+            lcs += s1[n - 1];
+            n--;
+            m--;
+        }
+        else if (dp[n - 1][m] > dp[n][m - 1])
+            n--;
+        else
+            m--;
+    }
+    reverse(lcs.begin(), lcs.end());
+    return lcs;
+}
+
 int main()
 {
-    string s, t;
-    cin >> s >> t;
-    cout << sp_opt(s, t) << "\n";
     return 0;
 }
