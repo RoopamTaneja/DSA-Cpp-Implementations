@@ -13,7 +13,7 @@ ll f(ll i, ll j, string &s1, string &s2)
         return 0;
     if (s1[i] == s2[j])
         return f(i - 1, j - 1, s1, s2) + 1;
-    return f(i - 1, j, s1, s2) + f(i, j - 1, s1, s2);
+    return max(f(i - 1, j, s1, s2), f(i, j - 1, s1, s2));
 }
 
 // Memoisation
