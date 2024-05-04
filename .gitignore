@@ -1,2 +1,4 @@
 *.exe
 .vscode/
+new.c
+new.cpp
